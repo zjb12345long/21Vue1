@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style type="text/css">
+    *{
+        margin:0px; padding:0px;
+    }
+    body{
+        font-size:15px;
+    }
+    #clothes{
+        width:1000px; margin:10px auto;
+    }
+    #bigImg{float:left; margin-right:10px;}
+    .item{
+      width:410px;
+      line-height:70px;
+      box-sizing: border-box;
+      background:skyblue ;
+      border:1px solid skyblue;
+      margin:10px 0px;
+      float:left;
+    }
+    .item img{vertical-align:middle; margin-right:10px;}
+    .select{ border:1px solid black;}
+</style>
+</head>
+<body>
+<div id="clothes">
+    <img :src="imgBigUrl" id="bigImg"/>
+    <p>服饰选型</p>
+    <div v-for="(item,index) in listFans" :class=['item',{'select':current==index}] @click="handleClick(index)"><img :src="item.imgUrl"/>{{item.desc}}</div>
+</div>
+<script>
+    new Vue({
+        el:'#clothes',
+        data:{
+            current:0,
+            imgBigUrl:'imgs/1.jpg',
+            listFans:[{desc:'中国警服',
+                imgUrl:'imgs/01.jpg',
+                imgBigUrl:'imgs/1.jpg'},
+                {desc:'粉色护理',
+                    imgUrl:'imgs/02.jpg',
+                    imgBigUrl:'imgs/2.jpg'},
+                {desc:'欧洲贵族',
+                    imgUrl:'imgs/03.jpg',
+                    imgBigUrl:'imgs/3.jpg'},
+                {desc:'古代旗袍',
+                    imgUrl:'imgs/04.jpg',
+                    imgBigUrl:'imgs/4.jpg'}]
+        },
+        methods:{
+            handleClick:function(index){
+                this.current = index;
+                this.imgBigUrl = this.listFans[index].imgBigUrl;
+            }
+        }
+    })
+</script>
+</body>
+</html>
