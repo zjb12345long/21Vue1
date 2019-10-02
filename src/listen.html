@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .border-gray{border:1px solid #ff0000}
+        #listen{ width:600px;margin: 0 auto}
+    </style>
+</head>
+<body>
+<div id="listen">
+    <img  :src="img" style="width: 300px;">
+    <ul style="display: inline-block;position: absolute">
+
+       <p style="font-weight:bold">颜色型号选择</p>
+        <li style="list-style-type: none; height: 50px" v-for="(item,index) in ary" :key="index" @click="doClick(index)" :class="{'border-gray':current==index}" >
+            <img :src="item.url" width="40" height="40"  style="float: left;">
+            <p style="float: left">{{item.name}}</p>
+        </li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el:"#listen",
+        data(){
+            return{
+
+                ary:[
+                    {name:'黑色双孔彩色版',url:'https://img.alicdn.com/imgextra/i4/372855875/O1CN010ZLNdE1tGnR4HRAc6_!!372855875.jpg_500x500q90.jpg'},
+                    {name:'黑色单孔无光版',url:'https://img.alicdn.com/imgextra/i1/372855875/O1CN01XJyXSr1tGnR07bh9H_!!372855875.jpg_500x500q90.jpg'},
+                    {name:'黑色701彩光版',url:'https://img.alicdn.com/imgextra/i4/372855875/O1CN01XoVaFw1tGnR0t1FRn_!!372855875.jpg_500x500q90.jpg'},
+                    {name:'白色7.1彩光版',url:'https://img.alicdn.com/imgextra/i4/372855875/O1CN01HBVqTa1tGnQxpXNnU_!!372855875.jpg_500x500q90.jpg'}],
+                current:-1,
+                img:"https://img.alicdn.com/imgextra/i4/372855875/O1CN010ZLNdE1tGnR4HRAc6_!!372855875.jpg_500x500q90.jpg"
+            }
+        },
+        methods:{
+            doClick(index){
+                this.current=index;
+                this.img=this.ary[index].url
+
+
+            }
+        }
+    })
+</script>
+</body>
+</html>
